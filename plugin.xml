@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!-- plugin.xml file written by dynaTrace Client 5.6.0 -->
+<plugin>
+  <extension point="com.dynatrace.diagnostics.pdk.pluginconfig" id="com.compuwareapm.dynatrace.plugin.netscaler" name="NetScaler Plugin">
+    <information>
+      <category value="" />
+      <displayname value="NetScaler Plugin" />
+      <description value="" />
+      <supportlevel value="unsupported" />
+    </information>
+    <configuration>
+      <property key="service" label="Service" type="string" description="Name of the service to query" default="" multiline="false" />
+      <property key="uri" label="URI" type="string" description="My property description ..." default="/nitro/v1/stat/service" multiline="false" />
+      <property key="port" label="Port" type="string" description="My property description ..." default="80" multiline="false" />
+      <property key="username" label="Username" type="string" description="User for authentication" default="" multiline="false" />
+      <property key="password" label="Password" type="password" description="Password for authentication" default="" />
+    </configuration>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitor" id="com.compuwareapm.dynatrace.plugin.netscaler.monitor" name="NetScaler Monitor">
+    <plugin configid="com.compuwareapm.dynatrace.plugin.netscaler" class="com.compuwareapm.dynatrace.plugin.netscaler.MonitorPlugin" />
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.compuwareapm.dynatrace.plugin.netscaler.monitor.metricgroup1" name="Netscaler Metrics">
+    <metricgroup monitorid="com.compuwareapm.dynatrace.plugin.netscaler.monitor">
+      <metric defaultrate="purepath" name="Average TTFB" unit="ms" />
+      <metric defaultrate="purepath" name="Response Rates" unit="ms" description="My metric description ..." />
+      <metric defaultrate="purepath" name="State" unit="number" description="Service down - 0 / up - 1" />
+      <metric defaultrate="purepath" name="Current Client Connections" unit="number" />
+      <metric defaultrate="purepath" name="Current Server Connections" unit="number" />
+    </metricgroup>
+  </extension>
+</plugin>
+
